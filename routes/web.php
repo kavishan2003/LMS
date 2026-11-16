@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('layouts.app');
 });
+
+Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
 Route::get('/login', function () {
     return view('auth.login');
