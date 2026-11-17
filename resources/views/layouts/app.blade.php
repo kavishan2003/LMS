@@ -8,6 +8,8 @@
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title>@yield('title','LMS')</title>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @fonts
 
     <!-- Styles / Scripts -->
