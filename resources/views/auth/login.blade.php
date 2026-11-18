@@ -8,7 +8,7 @@
     </div>
     <h1 class=" text-2xl mx-10">Login</h1>
 
-    <div class="w-full max-w-sm mt-10 bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs">
+    <div class="w-full max-w-xl mt-10 bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs">
         <form action="{{ route('login.store') }}" method="POST">
             @csrf
             <h5 class="text-xl font-semibold text-heading mb-6">Sign in to our platform</h5>
