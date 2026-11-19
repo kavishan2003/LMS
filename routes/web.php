@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectController;
 
 Route::get('/', function () {
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
     })->name('users');
 
     Route::get('dashboard/subjects',[SubjectController::class,'index'])->name('subjects');
+
+    Route::get('dashboard/users',[UserController::class,'index'])->name('users');
 
     Route::get('dashboard/events', function () {
         return view('pages.events');

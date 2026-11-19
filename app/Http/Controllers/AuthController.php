@@ -11,7 +11,6 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-
     public function logout(Request $request)
     {
         Auth::logout();
@@ -40,12 +39,16 @@ class AuthController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'phone' => ['required', 'digits:10'],
+            'gender' => ['required', 'in:male,female'],
+            'role' => ['required', 'in:teacher,student'],
+            'dob' => ['required', 'date', 'before:today'],
             'password' => [
                 'required',
                 'confirmed',
@@ -56,11 +59,15 @@ class AuthController extends Controller
             ],
         ]);
 
-        $user = new User;
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->phone = $request->input('phone');
-        $user->password = Hash::make($request->input('password'));
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'role' => $request->role,
+            'dob' => $request->dob,
+            'password' => Hash::make($request->password),
+        ]);
         $user->save();
 
         Auth::login($user);

@@ -140,7 +140,7 @@
     <div class="flex items-center justify-between mb-6">
         <p class="text-sm font-medium text-heading">
             Already have an account? 
-            <a href="{{ route('login') }}" class="text-fg-brand hover:underline">Login here</a>.
+            <a href="{{ route('login') }}" class="text-fg-brand underline hover:underline">Login here</a>.
         </p>
     </div>
 

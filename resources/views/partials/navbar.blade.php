@@ -17,8 +17,16 @@
                     <span class="self-center text-lg text-black font-semibold ">Flowbite</span>
                 </a>
                 @auth
-                    <span class="text-heading block text-sm font-medium ms-2">Welcome MR . <span
-                            class="text-lg">{{ Auth::user()->name }}</span></span>
+
+                    <span class="text-heading block text-sm font-medium ms-2">
+                        Welcome
+                        @if (Auth::user()->gender == 'male')
+                            Mr.
+                        @elseif (Auth::user()->gender == 'female')
+                            Mrs.
+                        @endif
+                        <span class="text-lg">{{ Auth::user()->name }}</span>
+                    </span>
                 @endauth
             </div>
             <div class="flex items-center ">
