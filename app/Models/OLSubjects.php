@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\Blueprint;
 
 class OLSubjects extends Model
 {
-protected $table = 'OLsubjects';
+    protected $table = 'OLsubjects';
 
     protected $fillable = [
         'subject_code',
@@ -16,4 +14,9 @@ protected $table = 'OLsubjects';
         'medium',
         'category',
     ];
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'student_ol_subject', 'olsubject_id', 'user_id')->withPivot(['grade', 'medium'])->withTimestamps();
+    }
 }

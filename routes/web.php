@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\OLStudentSubjectController;
+use App\Http\Middleware\PreventDuplicateSubjectSelection;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -13,7 +15,20 @@ Route::post('/register', [AuthController::class, 'store'])->name('register.store
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::middleware(['auth', PreventDuplicateSubjectSelection::class])->group(function () {
+
+    Route::get('/pre/ol', [OLStudentSubjectController::class, 'index'])->name('OLform');
+
+    Route::post('/pre/ol', [OLStudentSubjectController::class, 'create'])->name('OLform.create');
+
+});
+
 Route::middleware('auth')->group(function () {
+
+    Route::get('/pre', function () {
+        return view('auth.Prequestions');
+    })->name('prequestions');
+
     Route::get('/dashboard', function () {
         return view('pages.dashboard');
     })->name('dashboard');
@@ -30,9 +45,9 @@ Route::middleware('auth')->group(function () {
         return view('pages.users');
     })->name('users');
 
-    Route::get('dashboard/subjects',[SubjectController::class,'index'])->name('subjects');
+    Route::get('dashboard/subjects', [SubjectController::class, 'index'])->name('subjects');
 
-    Route::get('dashboard/users',[UserController::class,'index'])->name('users');
+    Route::get('dashboard/users', [UserController::class, 'index'])->name('users');
 
     Route::get('dashboard/events', function () {
         return view('pages.events');
@@ -49,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/leaderboard', function () {
         return view('pages.leaderboard');
     })->name('leaderboard');
-    
+
     Route::get('dashboard/passFailCalculator', function () {
         return view('pages.passFailCalculator');
     })->name('passFailCalculator');

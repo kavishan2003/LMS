@@ -32,7 +32,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            return view('pages.dashboard')->with('success', 'logged in successfully!');
         }
 
         return back()->withErrors([
@@ -72,7 +72,8 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('prequestions')->with('success', 'Account created successfully!');
+        
 
     }
 }

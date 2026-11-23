@@ -5,10 +5,10 @@
 
 {{-- <div class="flex flex-col justify-center items-center h-screen"> --}}
 
-    <h1 class=" text-2xl mx-10 text-center my-10">Register</h1>
+<h1 class=" text-2xl mx-10 text-center my-10">Register</h1>
 
 
-    {{-- @if ($errors->any())
+{{-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="list-disc list-inside text-red-500">
                 @foreach ($errors->all() as $error)
@@ -19,7 +19,8 @@
 
     @endif --}}
 
-    <form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data" class="max-w-5xl border border-default rounded-base shadow-xs mx-auto px-6 mt-10">
+<form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data"
+    class="max-w-5xl border border-default rounded-base shadow-xs mx-auto px-6 mt-10">
     @csrf
 
     <!-- Full Name -->
@@ -27,7 +28,7 @@
         <label for="full_name" class="block mb-2 text-sm font-medium text-heading">Full name</label>
         <input type="text" name="name" id="full_name" value="{{ old('name') }}"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-            placeholder="Ex : Herath Mudiyanselage Kavidu"  />
+            placeholder="Ex : Herath Mudiyanselage Kavidu" />
         @error('name')
             <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
         @enderror
@@ -38,7 +39,7 @@
         <label for="email" class="block mb-2 text-sm font-medium text-heading">Email address</label>
         <input type="email" name="email" id="email" value="{{ old('email') }}"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-            placeholder="kavidu@example.com"  />
+            placeholder="kavidu@example.com" />
         @error('email')
             <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
         @enderror
@@ -51,7 +52,7 @@
             <label for="phone" class="block mb-2 text-sm font-medium text-heading">Phone number</label>
             <input type="tel" name="phone" id="phone" value="{{ old('phone') }}"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="0771234567"  />
+                placeholder="0771234567" />
             @error('phone')
                 <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -61,8 +62,7 @@
         <div>
             <label for="dob" class="block mb-2 text-sm font-medium text-heading">Date of birth</label>
             <input type="date" name="dob" id="dob" value="{{ old('dob') }}"
-                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                 />
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" />
             @error('dob')
                 <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -72,8 +72,7 @@
         <div>
             <label for="gender" class="block mb-2 text-sm font-medium text-heading">Gender</label>
             <select name="gender" id="gender"
-                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs"
-                >
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs">
                 <option value="" disabled {{ old('gender') ? '' : 'selected' }}>Select gender</option>
                 <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
                 <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
@@ -87,8 +86,7 @@
         <div>
             <label for="role" class="block mb-2 text-sm font-medium text-heading">Role</label>
             <select name="role" id="role"
-                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs"
-                >
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs">
                 <option value="" disabled {{ old('role') ? '' : 'selected' }}>Select role</option>
                 <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Student</option>
                 <option value="teacher" {{ old('role') == 'teacher' ? 'selected' : '' }}>Teacher</option>
@@ -106,7 +104,7 @@
             <label for="password" class="block mb-2 text-sm font-medium text-heading">Password</label>
             <input type="password" name="password" id="password"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="•••••••••"  />
+                placeholder="•••••••••" />
             @error('password')
                 <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -114,10 +112,11 @@
 
         <!-- Confirm Password -->
         <div>
-            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-heading">Confirm password</label>
+            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-heading">Confirm
+                password</label>
             <input type="password" name="password_confirmation" id="password_confirmation"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="•••••••••"  />
+                placeholder="•••••••••" />
             @error('password_confirmation')
                 <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -139,7 +138,7 @@
     <!-- Login Link -->
     <div class="flex items-center justify-between mb-6">
         <p class="text-sm font-medium text-heading">
-            Already have an account? 
+            Already have an account?
             <a href="{{ route('login') }}" class="text-fg-brand underline hover:underline">Login here</a>.
         </p>
     </div>

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     'gender',
     'role',
     'dob',
-    'password',])]
+    'password', ])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -34,5 +34,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function olsubjects()
+    {
+        return $this->belongsToMany(OLSubjects::class, 'student_ol_subject', 'user_id', 'olsubject_id')->withPivot(['grade', 'medium'])->withTimestamps();
     }
 }
