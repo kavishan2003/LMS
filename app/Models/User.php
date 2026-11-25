@@ -38,6 +38,11 @@ class User extends Authenticatable
 
     public function olsubjects()
     {
-       return $this->hasOne(StudentOlSubject::class, 'user_id');
+        return $this->hasOne(StudentOlSubject::class, 'user_id');
+    }
+
+    public function alsubjects()
+    {
+        return $this->hasOne(StudentAlSubject::class, 'user_id');
     }
 }

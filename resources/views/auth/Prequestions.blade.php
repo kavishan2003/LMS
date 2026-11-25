@@ -4,8 +4,8 @@
 
 
 <div class="max-w-7xl  rounded-base  mx-auto p-6 mt-5">
-    <h1 class=" text-4xl mx-10 text-center my-5 ">Pre Questions</h1>
-    <h1 class=" text-2xl mx-10 text-center my-5 ">What is your section ? Are you a</h1>
+    <h1 class=" text-4xl mx-10 text-center my-5 ">Choose section</h1>
+    <h1 class=" text-2xl mx-10 text-center my-5 ">What is your section Are you a ?</h1>
 
     <div class=" flex max-w-5xl gap-5 items-center justify-around  rounded-base  mx-auto px-6 mt-10">
 
@@ -105,9 +105,12 @@
                     <span class="text-body">24×7 phone & email support</span>
                 </li>
             </ul>
-            <button type="button"
-                class="w-full text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Choose
-                section</button>
+            <a href="{{ route('ALform.index') }}">
+                <button type="button"
+                    class="w-full text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                    Choose section
+                </button>
+            </a>
         </div>
     </div>
 

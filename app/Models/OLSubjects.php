@@ -9,6 +9,7 @@ class OLSubjects extends Model
     protected $table = 'OLsubjects';
 
     protected $fillable = [
+        'id',
         'subject_code',
         'name',
         'medium',

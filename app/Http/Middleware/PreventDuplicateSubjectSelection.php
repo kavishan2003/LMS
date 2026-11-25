@@ -23,6 +23,10 @@ class PreventDuplicateSubjectSelection
             return redirect()->route('dashboard')
                 ->with('info', 'You have already selected your subjects.');
         }
+        elseif($user->alsubjects()->exists()){
+            return redirect()->route('dashboard')
+                ->with('info', 'You have already selected your subjects.');
+        }
 
         return $next($request);
     }

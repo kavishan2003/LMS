@@ -15,11 +15,11 @@ class ALSubjectsSeeder extends Seeder
     {
         $alSubjects = [
             // Science & Maths
-            ['code' => 'AL01', 'name' => 'Combined Mathematics', 'cat' => 'Physical Science'],
+            ['code' => 'AL01', 'name' => 'Combined Mathematics', 'cat' => 'Science'],
             ['code' => 'AL02', 'name' => 'Physics', 'cat' => 'Science'],
             ['code' => 'AL03', 'name' => 'Chemistry', 'cat' => 'Science'],
-            ['code' => 'AL04', 'name' => 'Biology', 'cat' => 'Biological Science'],
-            ['code' => 'AL05', 'name' => 'Agricultural Science', 'cat' => 'Biological Science'],
+            ['code' => 'AL04', 'name' => 'Biology', 'cat' => 'Science'],
+            ['code' => 'AL05', 'name' => 'Agricultural Science', 'cat' => 'Science'],
 
             // Commerce
             ['code' => 'AL06', 'name' => 'Accounting', 'cat' => 'Commerce'],

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ALStudentSubjectController;
 use App\Http\Controllers\OLStudentSubjectController;
 use App\Http\Middleware\PreventDuplicateSubjectSelection;
 
@@ -25,6 +26,9 @@ Route::middleware(['auth', PreventDuplicateSubjectSelection::class])->group(func
 
     Route::post('/pre/ol', [OLStudentSubjectController::class, 'create'])->name('OLform.create');
 
+    Route::get('/pre/al', [ALStudentSubjectController::class, 'index'])->name('ALform.index');
+
+    Route::post('/pre/al', [ALStudentSubjectController::class, 'create'])->name('ALform.create');
 });
 
 Route::middleware('auth')->group(function () {
@@ -47,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('dashboard/subjects', [SubjectController::class, 'index'])->name('subjects');
 
-    Route::get('/dashboard/subjects/{subject:subject_code}', [OLStudentSubjectController::class, 'show'])
+    Route::get('/dashboard/subjects/{subject_code}', [SubjectController::class, 'show'])
         ->name('subjects.show');
 
     Route::get('dashboard/users', [UserController::class, 'index'])->name('users');
