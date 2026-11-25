@@ -4,7 +4,7 @@
          <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="Flowbite Logo" />
          <span class="self-center text-lg text-heading font-semibold whitespace-nowrap">Learning management</span>
       </a>
-      <ul class="space-y-2 font-medium">
+      <ul class="space-y-2 gap-2 font-medium">
          <li>
             <a href="{{ route('dashboard') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                <svg class="w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z"/></svg>
@@ -14,21 +14,10 @@
          <li>
             <a href="{{ route('subjects') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                <i class="fa-solid fa-book-open-reader"></i> 
-               <span class="ms-3">Subjects</span>
+               <span class="ms-3">My Subjects</span>
             </a>
          </li>
-         <li>
-            <a href="{{ route('events') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
-               <i class="fa-regular fa-calendar-check"></i>
-               <span class="ms-3">Events/Calender</span>
-            </a>
-         </li>
-         <li>
-            <a href="{{ route('feedback') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
-               <i class="fa-solid fa-comment-dots"></i>
-               <span class="ms-3">Feedback</span>
-            </a>
-         </li>
+        
          <li>
             <a href="{{ route('ContactTeachers') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                <i class="fa-solid fa-chalkboard-user"></i>
@@ -67,6 +56,18 @@
                <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
             </a>
          </li> 
+          <li>
+            <a href="{{ route('events') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+               <i class="fa-regular fa-calendar-check"></i>
+               <span class="ms-3">Events/Calender</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ route('feedback') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+               <i class="fa-solid fa-comment-dots"></i>
+               <span class="ms-3">Feedback</span>
+            </a>
+         </li>
          {{-- <li>
             <a href="{{ route('profile') }}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"/></svg>

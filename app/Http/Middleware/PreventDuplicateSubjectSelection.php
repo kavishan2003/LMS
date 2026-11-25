@@ -19,7 +19,7 @@ class PreventDuplicateSubjectSelection
         /** @var User $user */
         $user = $request->user();
 
-        if ($user && $user->olsubjects()->exists()) {
+        if ($user->olsubjects()->exists()) {
             return redirect()->route('dashboard')
                 ->with('info', 'You have already selected your subjects.');
         }

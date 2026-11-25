@@ -17,6 +17,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', PreventDuplicateSubjectSelection::class])->group(function () {
 
+    Route::get('/pre', function () {
+        return view('auth.Prequestions');
+    })->name('prequestions');
+
     Route::get('/pre/ol', [OLStudentSubjectController::class, 'index'])->name('OLform');
 
     Route::post('/pre/ol', [OLStudentSubjectController::class, 'create'])->name('OLform.create');
@@ -24,10 +28,6 @@ Route::middleware(['auth', PreventDuplicateSubjectSelection::class])->group(func
 });
 
 Route::middleware('auth')->group(function () {
-
-    Route::get('/pre', function () {
-        return view('auth.Prequestions');
-    })->name('prequestions');
 
     Route::get('/dashboard', function () {
         return view('pages.dashboard');
@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
     })->name('users');
 
     Route::get('dashboard/subjects', [SubjectController::class, 'index'])->name('subjects');
+
+    Route::get('/dashboard/subjects/{subject:subject_code}', [OLStudentSubjectController::class, 'show'])
+        ->name('subjects.show');
 
     Route::get('dashboard/users', [UserController::class, 'index'])->name('users');
 

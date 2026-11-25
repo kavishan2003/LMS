@@ -59,13 +59,16 @@
                         </td>
                         <td class="flex items-center px-6 py-4">
                             <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-emerald-900 hover:underline ms-3">View more</a>
+                            <a href="{{ route('subjects.show', $OLSubject->subject_code) }}" class="font-medium text-emerald-900 hover:underline ms-3">View more</a>
                         </td>
                     </tr>
                 @empty
                     <tr>
                         <td colspan="6" class="px-6 py-4 text-center text-body">
                             No subjects selected yet.
+                            <a href="{{ route('prequestions') }}" class="underline hover:text-blue-500">
+                                Click here to add subjects
+                            </a>
                         </td>
                     </tr>
                 @endforelse

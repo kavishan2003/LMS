@@ -38,6 +38,6 @@ class User extends Authenticatable
 
     public function olsubjects()
     {
-        return $this->belongsToMany(OLSubjects::class, 'student_ol_subject', 'user_id', 'olsubject_id')->withPivot(['grade', 'medium'])->withTimestamps();
+       return $this->hasOne(StudentOlSubject::class, 'user_id');
     }
 }

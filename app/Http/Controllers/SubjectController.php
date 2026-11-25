@@ -13,7 +13,9 @@ class SubjectController extends Controller
     {
         $user = Auth::user();
         
-        $OLSubjects = $user->olsubjects;
+        $record = $user->olsubjects;
+
+        $OLSubjects = $record ? $record->getAllSubjects() : collect();
         
         return view('pages.subjects',[
             'OLSubjects' => $OLSubjects

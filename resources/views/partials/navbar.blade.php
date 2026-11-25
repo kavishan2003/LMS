@@ -14,7 +14,7 @@
                 </button>
                 <a href="#" class="flex ms-2 md:me-40">
                     <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="FlowBite Logo" />
-                    <span class="self-center text-lg text-black font-semibold ">Flowbite</span>
+                    <span class="self-center text-lg text-black font-semibold md:flex hidden">LearnMS</span>
                 </a>
                 @auth
 
