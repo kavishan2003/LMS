@@ -38,11 +38,11 @@ class SubjectController extends Controller
         $user = Auth::user();
 
         if ($user->olsubjects) {
-            // O/L ළමයෙක් නම් OLSubjects table එකෙන් හොයනවා
+            // O/L student - OLSubjects table 
             $subject = OLSubjects::where('subject_code', $subject_code)->firstOrFail();
             $studentGrade = $user->olsubjects->grade;
         } elseif ($user->alsubjects) {
-            // A/L ළමයෙක් නම් ALSubjects table එකෙන් හොයනවා
+            // A/L student - ALSubjects table 
             $subject = ALSubjects::where('subject_code', $subject_code)->firstOrFail();
             $studentGrade = $user->alsubjects->grade;
         } else {

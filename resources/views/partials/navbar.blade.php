@@ -13,19 +13,29 @@
                     </svg>
                 </button>
                 <a href="#" class="flex ms-2 md:me-40">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="FlowBite Logo" />
-                    <span class="self-center text-lg text-black font-semibold md:flex hidden">LearnMS</span>
+                    {{-- <img src="{{ asset('images/book.jpg') }}" class="h-8 me-3" alt="FlowBite Logo" /> --}}
+                    <i class="fa-solid fa-graduation-cap text-2xl" style="color: rgb(177, 151, 252);"></i>
+                    <span class="self-center text-lg text-blue-900 font-semibold md:flex hidden">LEARNMS</span>
                 </a>
                 @auth
 
-                    <span class="text-heading block text-sm font-medium ms-2">
+                    <span class="text-green-800 block text-lg font-medium ms-2">
                         Welcome
                         @if (Auth::user()->gender == 'male')
                             Mr.
                         @elseif (Auth::user()->gender == 'female')
                             Mrs.
                         @endif
-                        <span class="text-lg">{{ Auth::user()->name }}</span>
+                        <span class="text-lg text-heading">{{ Auth::user()->name }}</span>
+                        {{-- <i class="fa-regular fa-hand text-2xl text-blue-600"></i> --}}
+
+
+                        {{-- @if (Auth::user()->grade_label)
+                            <span class="text-sm ms-10 font-medium text-gray-600">
+                               ( {{ Auth::user()->grade_label }} )
+                            </span>
+                            <span class="text-lg">{{ Auth::user()->role }}</span>
+                        @endif --}}
                     </span>
                 @endauth
             </div>
@@ -40,17 +50,28 @@
                             class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="" alt="user photo">
+                            <img src="{{ asset('images/profile/default.png') }}" class="w-8 h-8 rounded-full" src="" alt="user photo">
                         </button>
                     </div>
-                    <div class="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+                    <div class="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-48"
                         id="dropdown-user">
                         <div class="px-4 py-3 border-b border-default-medium" role="none">
                             <p class="text-sm font-medium text-heading" role="none">
-                                Neil Sims
+                                @if (Auth::user()->gender == 'male')
+                                    Mr.
+                                @elseif (Auth::user()->gender == 'female')
+                                    Mrs.
+                                @endif
+                                <span class="text-sm text-heading">{{ Auth::user()->name }}</span>
+
                             </p>
                             <p class="text-sm text-body truncate" role="none">
-                                neil.sims@flowbite.com
+                                @if (Auth::user()->grade_label)
+                                    <span class="text-sm ms-10 font-medium text-gray-600">
+                                        ({{ Auth::user()->grade_label }}    )
+                                    </span><br>
+                                    <span class="text-sm">{{ Auth::user()->role }}</span>
+                                @endif
                             </p>
                         </div>
                         <ul class="p-2 text-sm text-body font-medium" role="none">

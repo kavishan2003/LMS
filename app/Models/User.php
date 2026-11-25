@@ -45,4 +45,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(StudentAlSubject::class, 'user_id');
     }
+
+    public function getGradeLabelAttribute()
+    {
+        if ($this->alsubjects) {
+            return "Grade {$this->alsubjects->grade} A/L";
+        }
+
+        if ($this->olsubjects) {
+            $grade = $this->olsubjects->grade;
+            $tag = in_array($grade, [10, 11]) ? ' O/L' : '';
+
+            return "Grade {$grade}{$tag}";
+        }
+
+        return null; // Teacher කෙනෙක් හෝ තාම grade එක select කරලා නැති student කෙනෙක් නම්
+    }
 }
