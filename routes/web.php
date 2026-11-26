@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ALStudentSubjectController;
 use App\Http\Controllers\OLStudentSubjectController;
 use App\Http\Middleware\PreventDuplicateSubjectSelection;
@@ -16,19 +18,29 @@ Route::post('/register', [AuthController::class, 'store'])->name('register.store
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth', PreventDuplicateSubjectSelection::class])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
-    Route::get('/pre', function () {
-        return view('auth.Prequestions');
-    })->name('prequestions');
+    // 1. STUDENT ONBOARDING ROUTES
+    Route::middleware([PreventDuplicateSubjectSelection::class])->group(function () {
+        Route::get('/pre', function (Request $request) {
+            if ($request->user()->role !== 'student') {
+                return redirect()->route('teacher.create');
+            }
 
-    Route::get('/pre/ol', [OLStudentSubjectController::class, 'index'])->name('OLform');
+            return view('auth.Prequestions');
+        })->name('prequestions');
 
-    Route::post('/pre/ol', [OLStudentSubjectController::class, 'create'])->name('OLform.create');
+        Route::get('/pre/ol', [OLStudentSubjectController::class, 'index'])->name('OLform');
+        Route::post('/pre/ol', [OLStudentSubjectController::class, 'create'])->name('OLform.create');
 
-    Route::get('/pre/al', [ALStudentSubjectController::class, 'index'])->name('ALform.index');
+        Route::get('/pre/al', [ALStudentSubjectController::class, 'index'])->name('ALform.index');
+        Route::post('/pre/al', [ALStudentSubjectController::class, 'create'])->name('ALform.create');
+            
+        // 2. TEACHER ONBOARDING ROUTES (only teachers)
+        Route::get('/pre/teacher', [TeacherController::class, 'create'])->name('teacher.create');
+        Route::post('/pre/teacher', [TeacherController::class, 'store'])->name('teacher.store');
+    });
 
-    Route::post('/pre/al', [ALStudentSubjectController::class, 'create'])->name('ALform.create');
 });
 
 Route::middleware('auth')->group(function () {
@@ -64,9 +76,7 @@ Route::middleware('auth')->group(function () {
         return view('pages.feedback');
     })->name('feedback');
 
-    Route::get('dashboard/ContactTeachers', function () {
-        return view('pages.ContactTeachers');
-    })->name('ContactTeachers');
+    Route::get('dashboard/ContactTeachers', [TeacherController::class, 'index'])->name('ContactTeachers');
 
     Route::get('dashboard/leaderboard', function () {
         return view('pages.leaderboard');

@@ -47,7 +47,7 @@ class AuthController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'phone' => ['required', 'digits:10'],
             'gender' => ['required', 'in:male,female'],
-            'role' => ['required', 'in:teacher,student'],
+            'role' => ['required', 'in:Teacher,Student'],
             'dob' => ['required', 'date', 'before:today'],
             'password' => [
                 'required',
@@ -72,8 +72,13 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('prequestions')->with('success', 'Account created successfully!');
-        
+        if ($user->role === 'teacher') {
+            return redirect()->route('teacher.create')
+                ->with('success', 'Account created! Please complete your teacher profile.');
+        }
+
+        return redirect()->route('prequestions')
+            ->with('success', 'Account created successfully!');
 
     }
 }

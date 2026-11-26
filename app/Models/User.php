@@ -59,6 +59,15 @@ class User extends Authenticatable
             return "Grade {$grade}{$tag}";
         }
 
-        return null; // Teacher කෙනෙක් හෝ තාම grade එක select කරලා නැති student කෙනෙක් නම්
+        return null;
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'user_id');
+    }
+    public function teacherSubject()
+    {
+        return $this->hasOne(Teacher::class, 'user_id');
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ALsubjects', function (Blueprint $table) {
             $table->id();
-            $table->string('subject_code')->unique(); // උදා: AL01-SI
+            $table->string('subject_code')->unique(); // ex: AL01-SI
             $table->string('name');
             $table->enum('medium', ['Sinhala', 'Tamil', 'English']);
             $table->string('category')->nullable();

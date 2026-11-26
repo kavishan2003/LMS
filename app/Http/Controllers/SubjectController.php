@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\ALSubjects;
 use App\Models\OLSubjects;
+use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +18,11 @@ class SubjectController extends Controller
         $subjects = collect();
         $level = null;
 
-        if ($user->olsubjects) {
+        if ($user->role === 'teacher' && $user->teacher) {
+
+            $subjects = $user->teacher->getTeacherSubjects();
+            $level = strtolower($user->teacher->section); // 'ol' or 'al'
+        } elseif ($user->olsubjects) {
             $subjects = $user->olsubjects->getAllSubjects();
             $level = 'ol';
         } elseif ($user->alsubjects) {
@@ -37,16 +41,20 @@ class SubjectController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        if ($user->olsubjects) {
-            // O/L student - OLSubjects table 
+        if ($user->role === 'teacher' && $user->teacher) {
+            $subject = $user->teacher->section === 'AL'
+                ? ALSubjects::where('subject_code', $subject_code)->firstOrFail()
+                : OLSubjects::where('subject_code', $subject_code)->firstOrFail();
+
+            $studentGrade = null;
+        } elseif ($user->olsubjects) {
             $subject = OLSubjects::where('subject_code', $subject_code)->firstOrFail();
             $studentGrade = $user->olsubjects->grade;
         } elseif ($user->alsubjects) {
-            // A/L student - ALSubjects table 
             $subject = ALSubjects::where('subject_code', $subject_code)->firstOrFail();
             $studentGrade = $user->alsubjects->grade;
         } else {
-            abort(404, 'No subjects registered for this student.');
+            abort(404);
         }
 
         return view('pages.subject-content', compact('subject', 'studentGrade'));

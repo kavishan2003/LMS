@@ -13,9 +13,9 @@
                 <tr>
                     <th scope="col" class="p-4">
                         <div class="flex items-center">
-                            <input id="table-checkbox" type="checkbox" value=""
+                            {{-- <input id="table-checkbox" type="checkbox" value=""
                                 class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
-                            <label for="table-checkbox" class="sr-only">Table checkbox</label>
+                            <label for="table-checkbox" class="sr-only">Table checkbox</label> --}}
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
@@ -69,13 +69,17 @@
                     <tr>
                         <td colspan="6" class="px-6 py-4 text-center text-body">
                             No subjects selected yet.
-                            <a href="{{ route('prequestions') }}" class="underline text-blue-600 hover:text-blue-800 ms-1">
-                                Add Subjects
-                            </a>
-                            {{-- or
-                            <a href="{{ route('ALform.index') }}" class="underline text-blue-600 hover:text-blue-800">
-                                Add A/L Subjects
-                            </a> --}}
+                            @if (Auth::user()->role === 'teacher')
+                                <a href="{{ route('teacher.create') }}"
+                                    class="underline text-blue-600 hover:text-blue-800 ms-1">
+                                    Add Teaching Subjects
+                                </a>
+                            @else
+                                <a href="{{ route('prequestions') }}"
+                                    class="underline text-blue-600 hover:text-blue-800 ms-1">
+                                    Add Subjects
+                                </a>
+                            @endif
                         </td>
                     </tr>
                 @endforelse

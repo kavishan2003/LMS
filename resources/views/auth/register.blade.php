@@ -76,8 +76,8 @@
             <select name="role" id="role"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs">
                 <option value="" disabled {{ old('role') ? '' : 'selected' }}>Select role</option>
-                <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Student</option>
-                <option value="teacher" {{ old('role') == 'teacher' ? 'selected' : '' }}>Teacher</option>
+                <option value="Student" {{ old('role') == 'Student' ? 'selected' : '' }}>Student</option>
+                <option value="Teacher" {{ old('role') == 'Teacher' ? 'selected' : '' }}>Teacher</option>
             </select>
             @error('role')
                 <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
