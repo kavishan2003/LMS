@@ -6,6 +6,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\StudentMarkController;
+use App\Http\Controllers\SubjectMaterialController;
 use App\Http\Controllers\ALStudentSubjectController;
 use App\Http\Controllers\OLStudentSubjectController;
 use App\Http\Middleware\PreventDuplicateSubjectSelection;
@@ -35,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/pre/al', [ALStudentSubjectController::class, 'index'])->name('ALform.index');
         Route::post('/pre/al', [ALStudentSubjectController::class, 'create'])->name('ALform.create');
-            
+
         // 2. TEACHER ONBOARDING ROUTES (only teachers)
         Route::get('/pre/teacher', [TeacherController::class, 'create'])->name('teacher.create');
         Route::post('/pre/teacher', [TeacherController::class, 'store'])->name('teacher.store');
@@ -85,6 +88,18 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/passFailCalculator', function () {
         return view('pages.passFailCalculator');
     })->name('passFailCalculator');
+
+    // Materials (Lessons, Drive, YouTube, Past Papers)
+    Route::post('/subjects/{subject_code}/materials', [SubjectMaterialController::class, 'store'])->name('materials.store');
+    Route::delete('/materials/{material}', [SubjectMaterialController::class, 'destroy'])->name('materials.destroy');
+
+    // Assignments & Dropbox Submissions
+    Route::post('/subjects/{subject_code}/assignments', [AssignmentController::class, 'store'])->name('assignments.store');
+    Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('assignments.destroy');
+    Route::post('/assignments/{assignment}/submit', [AssignmentController::class, 'submit'])->name('assignments.submit');
+
+    // Student Marks Update
+    Route::post('/subjects/{subject_code}/marks', [StudentMarkController::class, 'storeOrUpdate'])->name('marks.update');
 
 });
 
